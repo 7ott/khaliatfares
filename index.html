@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lemon Productions — Video & Media Production</title>
+<meta name="description" content="Lemon Productions is a video and media production house in Cairo, Egypt — fresh, sharp visual storytelling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a12;
+    --panel:#26241a;
+    --panel-2:#302d20;
+    --paper:#fbf8ec;
+    --dim:#a6a08a;
+    --lemon:#f5e026;
+    --lemon-dark:#cbb400;
+    --leaf:#7ea45c;
+    --line:rgba(251,248,236,0.12);
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Manrope', sans-serif;
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{max-width:1200px; margin:0 auto; padding:0 6vw;}
+
+  h1,h2,h3{font-family:'Unbounded', sans-serif; font-weight:700; letter-spacing:-0.01em;}
+
+  .eyebrow{
+    font-family:var(--mono); font-size:0.76rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--lemon);
+    display:flex; align-items:center; gap:10px; margin-bottom:16px; font-weight:600;
+  }
+  .eyebrow::before{content:"🍋"; font-size:0.9rem;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed; inset:0 0 auto 0; z-index:100;
+    background:rgba(28,26,18,0.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{max-width:1200px; margin:0 auto; padding:16px 6vw; display:flex; align-items:center; justify-content:space-between;}
+  .brand{font-family:'Unbounded', sans-serif; font-weight:700; font-size:1.15rem; display:flex; align-items:center; gap:10px;}
+  .brand .wedge{width:26px; height:26px;}
+  nav ul{display:flex; gap:30px;}
+  nav a{font-size:0.9rem; color:var(--dim); transition:color .2s; font-weight:600;}
+  nav a:hover{color:var(--paper);}
+  .nav-cta{
+    background:var(--lemon); color:var(--ink);
+    font-weight:700; font-size:0.85rem;
+    padding:11px 22px; transition:transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px); background:#fff05c;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:22px; height:2px; background:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh; display:flex; align-items:center; padding-top:120px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:center; width:100%;}
+  .hero h1{font-size:clamp(2.4rem, 5.6vw, 4.1rem); line-height:1.12; margin-bottom:26px;}
+  .hero h1 .hl{color:var(--lemon);}
+  .hero .lead{font-size:1.12rem; color:var(--dim); max-width:500px; margin-bottom:40px;}
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:15px 28px; font-weight:700; font-size:0.95rem; border:none; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn-primary{background:var(--lemon); color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-3px); background:#fff05c;}
+  .btn-ghost{background:transparent; color:var(--paper); border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--paper);}
+
+  .wedge-stage{position:relative; display:flex; align-items:center; justify-content:center; height:420px;}
+  .wedge-stage svg{animation:spin-slow 26s linear infinite;}
+  @keyframes spin-slow{ to{ transform:rotate(360deg); } }
+  .wedge-glow{position:absolute; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle, rgba(245,224,38,0.18), transparent 70%); filter:blur(6px);}
+
+  /* ---------- Ticker ---------- */
+  .ticker{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 0; overflow:hidden; white-space:nowrap; background:var(--panel);}
+  .ticker-track{display:inline-flex; gap:50px; animation:scroll-x 24s linear infinite;}
+  .ticker-track span{font-family:var(--mono); font-size:0.82rem; letter-spacing:0.04em; color:var(--dim); display:inline-flex; align-items:center; gap:14px; font-weight:600;}
+  .ticker-track span::after{content:"·"; color:var(--lemon); font-size:1.1rem;}
+  @keyframes scroll-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- Sections ---------- */
+  section{padding:110px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:60px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(1.9rem, 4.2vw, 2.8rem);}
+  .section-head p{color:var(--dim); max-width:380px; font-size:0.98rem;}
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .s-card{background:var(--ink); padding:38px 28px; transition:background .3s ease; position:relative;}
+  .s-card:hover{background:var(--panel);}
+  .s-num{font-family:var(--mono); color:var(--lemon); font-size:0.85rem; margin-bottom:22px; display:block;}
+  .s-card h3{font-size:1.15rem; font-weight:700; margin-bottom:10px; font-family:'Manrope',sans-serif;}
+  .s-card p{color:var(--dim); font-size:0.9rem;}
+
+  /* ---------- Process ---------- */
+  .process-list{border-top:1px solid var(--line);}
+  .process-item{display:grid; grid-template-columns:80px 1fr 240px; gap:30px; align-items:center; padding:30px 0; border-bottom:1px solid var(--line); transition:padding .3s ease;}
+  .process-item:hover{padding-inline-start:14px;}
+  .p-tag{font-family:var(--mono); color:var(--lemon); font-size:0.9rem;}
+  .process-item h3{font-size:1.15rem; font-weight:700; font-family:'Manrope',sans-serif;}
+  .process-item p{color:var(--dim); font-size:0.88rem;}
+
+  /* ---------- Stats ---------- */
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:30px; border-top:1px solid var(--line); padding-top:50px;}
+  .stat b{font-family:'Unbounded', sans-serif; font-size:2.1rem; color:var(--lemon); display:block;}
+  .stat span{font-family:var(--mono); font-size:0.76rem; color:var(--dim);}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  .info-row{display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--line);}
+  .info-row .label{font-family:var(--mono); font-size:0.74rem; color:var(--dim); width:110px; flex-shrink:0; padding-top:2px;}
+  .info-row .value a{color:var(--lemon); transition:opacity .2s;}
+  .info-row .value a:hover{opacity:0.75;}
+  .contact-cta{background:var(--panel); border:1px solid var(--line); padding:48px 38px;}
+  .contact-cta h3{font-size:1.5rem; margin-bottom:16px;}
+  .contact-cta p{color:var(--dim); margin-bottom:28px; font-size:0.95rem;}
+
+  footer{padding:40px 0; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-grid p{font-family:var(--mono); font-size:0.75rem; color:var(--dim);}
+  .footer-links{display:flex; gap:22px;}
+  .footer-links a{font-size:0.8rem; color:var(--dim); transition:color .2s;}
+  .footer-links a:hover{color:var(--paper);}
+
+  @media (max-width:880px){
+    nav ul, .nav-cta{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .wedge-stage{order:-1; height:260px;}
+    .services-grid{grid-template-columns:1fr;}
+    .process-item{grid-template-columns:50px 1fr;}
+    .process-item p{grid-column:2/3;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-grid{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <svg class="wedge" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="12" fill="#f5e026"/>
+        <path d="M13 13 13 2 A11 11 0 0 1 22.5 8Z" fill="#fbf8ec" opacity="0.5"/>
+        <path d="M13 13 22.5 8 A11 11 0 0 1 22.5 18Z" fill="#fbf8ec" opacity="0.3"/>
+      </svg>
+      Lemon Productions
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="nav-cta">START A PROJECT</a>
+    <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">VIDEO & MEDIA PRODUCTION</div>
+      <h1>FRESH STORIES.<br><span class="hl">SHARP VISUALS.</span></h1>
+      <p class="lead">Lemon Productions is a Cairo-based video and media house — we shoot, edit and finish content that doesn't blend in.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">Start a project →</a>
+        <a href="#services" class="btn btn-ghost">See our services</a>
+      </div>
+    </div>
+    <div class="wedge-stage">
+      <div class="wedge-glow"></div>
+      <svg width="260" height="260" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#7ea45c" stroke-width="6"/>
+        <circle cx="100" cy="100" r="78" fill="#fbf8ec" opacity="0.06"/>
+        <g stroke="#f5e026" stroke-width="2" opacity="0.9">
+          <line x1="100" y1="100" x2="100" y2="22"/>
+          <line x1="100" y1="100" x2="167" y2="61"/>
+          <line x1="100" y1="100" x2="167" y2="139"/>
+          <line x1="100" y1="100" x2="100" y2="178"/>
+          <line x1="100" y1="100" x2="33" y2="139"/>
+          <line x1="100" y1="100" x2="33" y2="61"/>
+        </g>
+        <circle cx="100" cy="100" r="10" fill="#f5e026"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>VIDEO PRODUCTION</span>
+    <span>CONTENT CREATION</span>
+    <span>POST-PRODUCTION</span>
+    <span>MOTION GRAPHICS</span>
+    <span>EVENT COVERAGE</span>
+    <span>PHOTOGRAPHY</span>
+    <span>VIDEO PRODUCTION</span>
+    <span>CONTENT CREATION</span>
+    <span>POST-PRODUCTION</span>
+    <span>MOTION GRAPHICS</span>
+    <span>EVENT COVERAGE</span>
+    <span>PHOTOGRAPHY</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">SERVICES</span>
+        <h2>What we produce</h2>
+      </div>
+      <p>From a single reel to a full campaign, shot and finished in-house.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="s-card">
+        <span class="s-num">01</span>
+        <h3>Video Production</h3>
+        <p>Commercials, brand films and social-first video shot on location or in-studio.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">02</span>
+        <h3>Content Creation</h3>
+        <p>Ongoing social content built around a calendar, not one-off shoots.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">03</span>
+        <h3>Post-Production</h3>
+        <p>Editing, color and sound that turn footage into a finished story.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">04</span>
+        <h3>Motion Graphics</h3>
+        <p>Animated titles, lower thirds and explainer graphics on brand.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">05</span>
+        <h3>Event Coverage</h3>
+        <p>Multi-camera coverage for launches, conferences and live events.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">06</span>
+        <h3>Photography</h3>
+        <p>Product, portrait and behind-the-scenes stills to round out a campaign.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">PROCESS</span>
+        <h2>How a shoot runs</h2>
+      </div>
+      <p>Four steps, one crew — no handoffs between agencies.</p>
+    </div>
+    <div class="process-list reveal">
+      <div class="process-item">
+        <span class="p-tag">01</span>
+        <h3>Brief & concept</h3>
+        <p>We learn the brand, the audience and the goal before day one.</p>
+      </div>
+      <div class="process-item">
+        <span class="p-tag">02</span>
+        <h3>Production</h3>
+        <p>Shoot days run on a tight, realistic schedule.</p>
+      </div>
+      <div class="process-item">
+        <span class="p-tag">03</span>
+        <h3>Edit & review</h3>
+        <p>You see cuts early and revisions turn around fast.</p>
+      </div>
+      <div class="process-item">
+        <span class="p-tag">04</span>
+        <h3>Delivery</h3>
+        <p>Final files, every format, ready to publish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat"><b>06</b><span>SERVICE LINES</span></div>
+      <div class="stat"><b>CAIRO</b><span>HOME BASE</span></div>
+      <div class="stat"><b>24H</b><span>RESPONSE TIME</span></div>
+      <div class="stat"><b>01</b><span>CREW, START TO FINISH</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">CONTACT</span>
+        <h2>Let's make something</h2>
+      </div>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="info-row">
+          <span class="label">COMPANY</span>
+          <span class="value">Lemon Productions</span>
+        </div>
+        <div class="info-row">
+          <span class="label">ADDRESS</span>
+          <span class="value">14 Beirut St, Cairo, Cairo 11341, Egypt</span>
+        </div>
+        <div class="info-row">
+          <span class="label">PHONE</span>
+          <span class="value"><a href="tel:+201019664328">+20 101 966 4328</a></span>
+        </div>
+        <div class="info-row">
+          <span class="label">WEBSITE</span>
+          <span class="value"><a href="https://lemonprod.online/" target="_blank" rel="noopener">lemonprod.online</a></span>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <h3>Have a project in mind?</h3>
+        <p>Tell us about your brand, your timeline and what you're trying to launch — we'll get back to you within a day.</p>
+        <a href="tel:+201019664328" class="btn btn-primary">Call +20 101 966 4328</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <p>© 2026 LEMON PRODUCTIONS — ALL RIGHTS RESERVED</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  const burger = document.querySelector('.burger');
+  const navEl = document.querySelector('nav');
+  burger.addEventListener('click', ()=>{
+    navEl.style.display = navEl.style.display === 'block' ? 'none' : 'block';
+  });
+</script>
+</body>
+</html>
