@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مؤسسة خلية فارس للتجارة | Trading & Supply</title>
+<meta name="description" content="مؤسسة خلية فارس للتجارة — general trading, wholesale supply and sourcing based in Buraidah, Saudi Arabia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Public+Sans:wght@300;400;500;600;700&family=Tajawal:wght@700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d1b2a;
+    --panel:#132a3d;
+    --panel-2:#1a3750;
+    --paper:#f4f1e8;
+    --dim:#93a3b0;
+    --signal:#c9a24b;
+    --signal-dark:#a3801f;
+    --line:rgba(244,241,232,0.14);
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Public Sans', sans-serif;
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .container{max-width:1200px; margin:0 auto; padding:0 6vw;}
+
+  h1,h2,h3{font-family:'Sora', sans-serif; font-weight:700; letter-spacing:-0.01em;}
+  .ar{font-family:'Tajawal', sans-serif; font-weight:900; direction:rtl; unicode-bidi:isolate;}
+
+  .eyebrow{
+    font-family:var(--mono); font-size:0.76rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--signal);
+    display:flex; align-items:center; gap:10px; margin-bottom:16px; font-weight:600;
+  }
+  .eyebrow::before{content:""; width:24px; height:1px; background:var(--signal);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed; inset:0 0 auto 0; z-index:100;
+    background:rgba(13,27,42,0.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{max-width:1200px; margin:0 auto; padding:16px 6vw; display:flex; align-items:center; justify-content:space-between; gap:20px;}
+  .brand{font-size:1.15rem; display:flex; align-items:center; gap:10px; white-space:nowrap;}
+  .brand .mark{
+    width:34px; height:34px; flex-shrink:0;
+    border:1.5px solid var(--signal);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .brand .mark::before{content:""; width:10px; height:10px; background:var(--signal); transform:rotate(45deg);}
+  nav ul{display:flex; gap:28px;}
+  nav a{font-size:0.9rem; color:var(--dim); transition:color .2s; font-weight:500;}
+  nav a:hover{color:var(--paper);}
+  .nav-cta{
+    background:var(--signal); color:var(--ink);
+    font-weight:700; font-size:0.85rem;
+    padding:11px 22px; transition:transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px); background:#e0bb5f;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:22px; height:2px; background:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh; display:flex; align-items:center; padding-top:120px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(201,162,75,0.35) 1px, transparent 1px);
+    background-size:34px 34px;
+    opacity:0.25; pointer-events:none;
+  }
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:center; width:100%; position:relative;}
+  .hero h1{font-size:clamp(2.4rem, 5.4vw, 3.9rem); line-height:1.14; margin-bottom:20px;}
+  .hero h1 .hl{color:var(--signal);}
+  .hero-brand-ar{
+    font-size:1.25rem; color:var(--dim);
+    margin-bottom:24px; padding-inline-start:14px; border-inline-start:4px solid var(--signal);
+  }
+  .hero .lead{font-size:1.1rem; color:var(--dim); max-width:500px; margin-bottom:40px;}
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:15px 28px; font-weight:700; font-size:0.95rem; border:none; cursor:pointer; transition:transform .25s ease, background .25s ease;}
+  .btn-primary{background:var(--signal); color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-3px); background:#e0bb5f;}
+  .btn-ghost{background:transparent; color:var(--paper); border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--paper);}
+
+  .route-stage{position:relative; height:420px; border:1px solid var(--line); background:var(--panel);}
+  .route-stage svg{width:100%; height:100%;}
+  .coord-label{
+    position:absolute; font-family:var(--mono); font-size:0.68rem; color:var(--signal);
+    background:var(--ink); padding:3px 8px; border:1px solid var(--line);
+  }
+  .coord-1{top:14px; left:14px;}
+  .coord-2{bottom:14px; right:14px;}
+
+  /* ---------- Ticker ---------- */
+  .ticker{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 0; overflow:hidden; white-space:nowrap; background:var(--panel);}
+  .ticker-track{display:inline-flex; gap:50px; animation:scroll-x 26s linear infinite;}
+  .ticker-track span{font-family:var(--mono); font-size:0.82rem; letter-spacing:0.04em; color:var(--dim); display:inline-flex; align-items:center; gap:14px; font-weight:500;}
+  .ticker-track span::after{content:"//"; color:var(--signal);}
+  @keyframes scroll-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- Sections ---------- */
+  section{padding:110px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:56px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(1.9rem, 4.2vw, 2.7rem);}
+  .section-head p{color:var(--dim); max-width:380px; font-size:0.98rem;}
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .s-card{background:var(--ink); padding:38px 28px; transition:background .3s ease;}
+  .s-card:hover{background:var(--panel);}
+  .s-num{font-family:var(--mono); color:var(--signal); font-size:0.85rem; margin-bottom:22px; display:block;}
+  .s-card h3{font-size:1.15rem; font-weight:700; margin-bottom:10px; font-family:'Public Sans',sans-serif;}
+  .s-card p{color:var(--dim); font-size:0.9rem;}
+
+  /* ---------- Why us ---------- */
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .why-item{background:var(--ink); padding:34px 24px;}
+  .why-icon{width:42px; height:42px; margin-bottom:18px; border:1px solid var(--signal); display:flex; align-items:center; justify-content:center;}
+  .why-icon svg{width:20px; height:20px; stroke:var(--signal);}
+  .why-item h3{font-size:1.02rem; margin-bottom:8px; font-family:'Public Sans',sans-serif; font-weight:700;}
+  .why-item p{font-size:0.88rem; color:var(--dim);}
+
+  /* ---------- Stats ---------- */
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:30px;}
+  .stat b{font-family:'Sora', sans-serif; font-size:2.1rem; color:var(--signal); display:block;}
+  .stat span{font-family:var(--mono); font-size:0.76rem; color:var(--dim);}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  .info-row{display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--line);}
+  .info-row .label{font-family:var(--mono); font-size:0.74rem; color:var(--dim); width:110px; flex-shrink:0; padding-top:2px;}
+  .info-row .value a{color:var(--signal); transition:opacity .2s;}
+  .info-row .value a:hover{opacity:0.75;}
+  .contact-cta{background:var(--panel); border:1px solid var(--line); padding:48px 38px;}
+  .contact-cta h3{font-size:1.5rem; margin-bottom:16px;}
+  .contact-cta p{color:var(--dim); margin-bottom:28px; font-size:0.95rem;}
+
+  footer{padding:40px 0; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-grid p{font-family:var(--mono); font-size:0.75rem; color:var(--dim);}
+  .footer-links{display:flex; gap:22px;}
+  .footer-links a{font-size:0.8rem; color:var(--dim); transition:color .2s;}
+  .footer-links a:hover{color:var(--paper);}
+
+  @media (max-width:880px){
+    nav ul, .nav-cta{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .route-stage{order:-1; height:260px;}
+    .services-grid, .why-grid{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-grid{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand"><span class="mark"></span><span class="ar">مؤسسة خلية فارس للتجارة</span></div>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="nav-cta">GET A QUOTE</a>
+    <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">GENERAL TRADING & SUPPLY</div>
+      <h1>Sourcing and supply <span class="hl">you can build on</span></h1>
+      <div class="hero-brand-ar ar">مؤسسة خلية فارس للتجارة</div>
+      <p class="lead">Khaliyat Fares Trading Est. sources, imports and supplies quality goods to businesses across Al Qassim and beyond — reliable, on schedule, every time.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">Request a quote →</a>
+        <a href="#services" class="btn btn-ghost">See our services</a>
+      </div>
+    </div>
+    <div class="route-stage">
+      <span class="coord-label coord-1">26.3260° N</span>
+      <span class="coord-label coord-2">43.9750° E</span>
+      <svg viewBox="0 0 300 300" fill="none">
+        <circle cx="150" cy="150" r="110" stroke="#c9a24b" stroke-width="1" opacity="0.3" stroke-dasharray="2 6"/>
+        <circle cx="150" cy="150" r="70" stroke="#c9a24b" stroke-width="1" opacity="0.4" stroke-dasharray="2 6"/>
+        <path d="M60 220 Q120 100 150 150 Q190 210 250 90" stroke="#c9a24b" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="60" cy="220" r="5" fill="#c9a24b"/>
+        <circle cx="150" cy="150" r="5" fill="#f4f1e8"/>
+        <circle cx="250" cy="90" r="6" fill="#c9a24b"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>IMPORT & EXPORT</span>
+    <span>WHOLESALE SUPPLY</span>
+    <span>LOCAL DISTRIBUTION</span>
+    <span>SOURCING & PROCUREMENT</span>
+    <span>LOGISTICS COORDINATION</span>
+    <span>CUSTOMS SUPPORT</span>
+    <span>IMPORT & EXPORT</span>
+    <span>WHOLESALE SUPPLY</span>
+    <span>LOCAL DISTRIBUTION</span>
+    <span>SOURCING & PROCUREMENT</span>
+    <span>LOGISTICS COORDINATION</span>
+    <span>CUSTOMS SUPPORT</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">SERVICES</span>
+        <h2>What we handle for you</h2>
+      </div>
+      <p>From sourcing to your warehouse door — one point of contact, start to finish.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="s-card">
+        <span class="s-num">01</span>
+        <h3>Import & Export</h3>
+        <p>Cross-border trade handled end to end, with paperwork sorted for you.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">02</span>
+        <h3>Wholesale Supply</h3>
+        <p>Bulk supply for retailers, contractors and institutional buyers.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">03</span>
+        <h3>Local Distribution</h3>
+        <p>Reliable delivery across Al Qassim and neighboring regions.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">04</span>
+        <h3>Sourcing & Procurement</h3>
+        <p>We find and vet suppliers that match your spec and your budget.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">05</span>
+        <h3>Logistics Coordination</h3>
+        <p>Shipping, warehousing and scheduling managed on your behalf.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">06</span>
+        <h3>Customs Support</h3>
+        <p>Clearance handled correctly the first time, with fewer delays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">WHY KHALIYAT FARES</span>
+        <h2>A trading partner, not just a vendor</h2>
+      </div>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Verified Suppliers</h3>
+        <p>Every source is vetted before it reaches your order.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h12" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <h3>Bulk & Retail</h3>
+        <p>We supply large contracts and small orders alike.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M12 3v18" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+        <h3>On-Time Delivery</h3>
+        <p>Clear timelines you can plan your operations around.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0-11v3l2 2" stroke-width="2"/></svg></div>
+        <h3>Direct Support</h3>
+        <p>One contact who knows your order, start to finish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:50px 0; background:var(--panel);">
+  <div class="container stats-grid reveal">
+    <div class="stat"><b>06</b><span>SERVICE LINES</span></div>
+    <div class="stat"><b>QASSIM</b><span>HOME BASE</span></div>
+    <div class="stat"><b>24H</b><span>RESPONSE TIME</span></div>
+    <div class="stat"><b>01</b><span>POINT OF CONTACT</span></div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">CONTACT</span>
+        <h2>Ready to place an order</h2>
+      </div>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="info-row">
+          <span class="label">COMPANY</span>
+          <span class="value ar">مؤسسة خلية فارس للتجارة</span>
+        </div>
+        <div class="info-row">
+          <span class="label">ADDRESS</span>
+          <span class="value">7918 Hakem Tarahib Al Dawish, QBMA7918, Buraidah, Al Qassim 52358, Saudi Arabia</span>
+        </div>
+        <div class="info-row">
+          <span class="label">PHONE</span>
+          <span class="value"><a href="tel:+966503135294">+966 50 313 5294</a></span>
+        </div>
+        <div class="info-row">
+          <span class="label">WEBSITE</span>
+          <span class="value"><a href="https://khaliatfares.com/" target="_blank" rel="noopener">khaliatfares.com</a></span>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <h3>Need a quote?</h3>
+        <p>Tell us what you're sourcing and your timeline — we'll come back with a detailed quote fast.</p>
+        <a href="tel:+966503135294" class="btn btn-primary">Call +966 50 313 5294</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <p>© 2026 <span class="ar" style="font-size:0.85rem;">مؤسسة خلية فارس للتجارة</span> — ALL RIGHTS RESERVED</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  const burger = document.querySelector('.burger');
+  const navEl = document.querySelector('nav');
+  burger.addEventListener('click', ()=>{
+    navEl.style.display = navEl.style.display === 'block' ? 'none' : 'block';
+  });
+</script>
+</body>
+</html>
